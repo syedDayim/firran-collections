@@ -4,9 +4,11 @@ import '../../styles/productPage.css'; // Adjust the path according to your proj
 import NoProduct from '../../components/NoProduct';
 import Header from '../../components/Header.jsx';
 import Footer from '../../components/Footer.jsx';
+import Modal from '../../components/Modal'; // Import Modal component
 
 const Gents = () => {
   const [gentsProducts, setGentsProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
   const location = useLocation();
 
   useEffect(() => {
@@ -39,6 +41,14 @@ const Gents = () => {
     fetchData();
   }, [location]);
 
+  const handleKnowMore = (product) => {
+    setSelectedProduct(product); // Open modal with selected product
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null); // Close modal
+  };
+
   return (
     <div className="gents-container">
       <Header/>
@@ -53,7 +63,13 @@ const Gents = () => {
               <div className="product-details">
                 <h2 className="product-title">{product.title}</h2>
                 <div className="product-actions">
-                  <a href="#" className="know-more">Know More</a>
+                  <a
+                    href="#"
+                    className="know-more"
+                    onClick={() => handleKnowMore(product)} // Trigger modal on click
+                  >
+                    Know More
+                  </a>
                   {product.is_soldout && <span className="sold-out">Sold Out</span>}
                 </div>
               </div>
@@ -61,6 +77,10 @@ const Gents = () => {
           ))}
         </div>
       )}
+
+      {/* Modal Component */}
+      <Modal isOpen={!!selectedProduct} product={selectedProduct} onClose={closeModal} />
+
     </div>
   );
 };

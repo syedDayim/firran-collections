@@ -1,0 +1,126 @@
+/* Modal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .modal-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ff6666;
+    transition: color 0.3s ease;
+  }
+  
+  .close-btn:hover {
+    color: #ff3333;
+  }
+  
+  .modal-body {
+    display: flex;
+    height: 500px;
+  }
+  
+  .modal-left {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px 0 0 15px;
+  }
+  
+  .modal-right {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .modal-right p {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .modal-btn {
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .modal-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .modal-left,
+    .modal-right {
+      width: 100%;
+      height: auto;
+    }
+  
+    .modal-image {
+      border-radius: 15px 15px 0 0;
+    }
+  
+    .modal-right {
+      padding: 20px;
+    }
+  }
+
+
+  
