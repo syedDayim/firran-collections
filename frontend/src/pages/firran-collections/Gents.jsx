@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../styles/productPage.css'; // Adjust the path according to your project structure
 import NoProduct from '../../components/NoProduct';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
 
 const Gents = () => {
   const [gentsProducts, setGentsProducts] = useState([]);
@@ -39,7 +41,8 @@ const Gents = () => {
 
   return (
     <div className="gents-container">
-      <h1>Gents Only</h1>
+      <Header/>
+
       {gentsProducts.length === 0 ? (
         <NoProduct />
       ) : (

@@ -1,92 +1,149 @@
-/* producePage.css */
 .gents-container {
-    padding: 20px 40px;
-    background-color: #f4f4f4; /* Light background for contrast */
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2rem;
-    color: #333;
-  }
-  
+  background-color: #f4f4f4; /* Light background for contrast */
+  padding-bottom: 50px; /* Add padding at the bottom of the entire container */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.gents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+  gap: 30px; /* Space between cards */
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  width: 100%; /* Ensure full width is taken within the grid */
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* Elevate the card on hover */
+}
+
+.product-image {
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05); /* Zoom in the image slightly on hover */
+}
+
+.product-details {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.know-more {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+  margin-right: 10px;
+}
+
+.know-more:hover {
+  color: #0056b3;
+}
+
+.sold-out {
+  background-color: red;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* Responsive tweaks for tablets and smaller screens */
+@media (max-width: 1024px) {
   .gents-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-    gap: 30px; /* Space between cards */
+    grid-template-columns: repeat(auto-fit, minmax(443.2px, 1fr)); /* For tablets */
   }
-  
+
   .product-card {
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    height: 550px; /* Increased height for larger images */
-    width: 100%; /* Full width of the grid column */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 443.2px;
+    height: 748.66px;
   }
-  
-  .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .gents-grid {
+    grid-template-columns: repeat(auto-fit, minmax(309.2px, 1fr)); /* For mobile */
   }
-  
-  .product-image {
-    width: 100%;
-    height: 70%; /* Image height increased to 70% of the card */
-    object-fit: cover; /* Ensure the image covers the area without stretching */
-    border-bottom: 1px solid #eee;
+
+  .product-card {
+    width: 309.2px;
+    height: 585.24px;
   }
-  
-  .product-details {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
+}
+
+/* For very small screens (mobile devices) */
+@media (max-width: 576px) {
+  .gents-grid {
+    grid-template-columns: 1fr; /* Ensure there's only one card per row */
   }
-  
+
   .product-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 1.2rem;
   }
-  
-  .product-info {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 15px;
-    display: none; /* Initially hidden, can be toggled */
+
+  .product-card {
+    margin-bottom: 30px;
   }
-  
-  .product-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
+
+  .product-card {
+    width: 100%;
   }
-  
-  .know-more {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+}
+
+/* Desktop-specific dimensions */
+@media (min-width: 1025px) {
+  .gents-grid {
+    grid-template-columns: repeat(auto-fit, minmax(347.3px, 1fr)); /* For desktops */
   }
-  
-  .know-more:hover {
-    color: #0056b3;
+
+  .product-card {
+    width: 347.3px;
+    height: 611.54px;
   }
-  
-  .sold-out {
-    background-color: red;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-  }
-  
+}

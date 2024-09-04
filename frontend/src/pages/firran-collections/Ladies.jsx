@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import '../../styles/productPage.css'; // Adjust the path according to your project structure
+import '../../styles/productPage.css'; 
 import NoProduct from '../../components/NoProduct';
+import Header from '../../components/Header';
 
 const Ladies = () => {
   const [ladiesProducts, setLadiesProducts] = useState([]);
@@ -38,23 +39,28 @@ const Ladies = () => {
   }, [location]);
 
   return (
-    <div className="gents-container">
-      <h1>Ladies Products</h1>
-      {ladiesProducts.length === 0 && <p> <NoProduct/> </p>}
-      <div className="gents-grid">
-        {ladiesProducts.map((product, index) => (
-          <div className="product-card" key={index}>
-            <img src={product.image} alt={product.title} className="product-image" />
-            <div className="product-details">
-              <h2 className="product-title">{product.title}</h2>
-              <div className="product-actions">
-                <a href="#" className="know-more">Know More</a>
-                {product.is_soldout && <span className="sold-out">Sold Out</span>}
+    <div className="gents-container"> {/* Assuming you're using same styles */}
+      <Header/>
+
+      {/* Avoid wrapping NoProduct inside a <p> tag */}
+      {ladiesProducts.length === 0 ? (
+        <NoProduct />
+      ) : (
+        <div className="gents-grid"> {/* Ensure you're using the same grid class */}
+          {ladiesProducts.map((product, index) => (
+            <div className="product-card" key={index}>
+              <img src={product.image} alt={product.title} className="product-image" />
+              <div className="product-details">
+                <h2 className="product-title">{product.title}</h2>
+                <div className="product-actions">
+                  <a href="#" className="know-more">Know More</a>
+                  {product.is_soldout && <span className="sold-out">Sold Out</span>}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
