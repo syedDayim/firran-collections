@@ -1,6 +1,7 @@
 .gents-container {
   background-color: #f4f4f4; /* Light background for contrast */
   padding-bottom: 50px; /* Add padding at the bottom of the entire container */
+ /* Added padding at the top for better spacing */
 }
 
 h1 {
@@ -13,8 +14,12 @@ h1 {
 .gents-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-  gap: 30px; /* Space between cards */
+  gap: 20px; /* Space between cards */
   padding: 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px; /* Restrict grid width for better layout on larger screens */
+  margin: 0 auto; /* Center the grid container */
 }
 
 .product-card {
@@ -27,10 +32,8 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   padding: 15px;
-  margin-bottom: 20px;
   position: relative;
   z-index: 1;
-  width: 100%; /* Ensure full width is taken within the grid */
 }
 
 .product-card:hover {
@@ -56,9 +59,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .product-title {
@@ -98,27 +99,19 @@ h1 {
 /* Responsive tweaks for tablets and smaller screens */
 @media (max-width: 1024px) {
   .gents-grid {
-    grid-template-columns: repeat(auto-fit, minmax(443.2px, 1fr)); /* For tablets */
-  }
-
-  .product-card {
-    width: 443.2px;
-    height: 748.66px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Keep a consistent card size */
   }
 }
 
 @media (max-width: 768px) {
   .gents-grid {
-    grid-template-columns: repeat(auto-fit, minmax(309.2px, 1fr)); /* For mobile */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* For mobile */
   }
+  
 
-  .product-card {
-    width: 309.2px;
-    height: 585.24px;
-  }
+
 }
 
-/* For very small screens (mobile devices) */
 @media (max-width: 576px) {
   .gents-grid {
     grid-template-columns: 1fr; /* Ensure there's only one card per row */
@@ -131,20 +124,11 @@ h1 {
   .product-card {
     margin-bottom: 30px;
   }
-
-  .product-card {
-    width: 100%;
-  }
 }
 
 /* Desktop-specific dimensions */
 @media (min-width: 1025px) {
   .gents-grid {
-    grid-template-columns: repeat(auto-fit, minmax(347.3px, 1fr)); /* For desktops */
-  }
-
-  .product-card {
-    width: 347.3px;
-    /* height: 611.54px; */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* For desktops */
   }
 }

@@ -17,7 +17,7 @@ const Modal = ({ isOpen, product, onClose }) => {
         <div className="modal-header">
           <h2>{product.title}</h2>
           <button className="close-btn" onClick={onClose}>
-            X
+            
           </button>
         </div>
         <div className="modal-body">

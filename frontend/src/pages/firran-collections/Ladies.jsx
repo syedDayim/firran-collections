@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom';
 import '../../styles/productPage.css'; 
 import NoProduct from '../../components/NoProduct';
 import Header from '../../components/Header';
+import Modal from '../../components/Modal'; // Import Modal component
 
 const Ladies = () => {
   const [ladiesProducts, setLadiesProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
   const location = useLocation();
 
   useEffect(() => {
@@ -38,6 +40,14 @@ const Ladies = () => {
     fetchData();
   }, [location]);
 
+  const handleKnowMore = (product) => {
+    setSelectedProduct(product); // Open modal with selected product
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null); // Close modal
+  };
+
   return (
     <div className="gents-container"> {/* Assuming you're using same styles */}
       <Header/>
@@ -53,7 +63,13 @@ const Ladies = () => {
               <div className="product-details">
                 <h2 className="product-title">{product.title}</h2>
                 <div className="product-actions">
-                  <a href="#" className="know-more">Know More</a>
+                  <a
+                    href="#"
+                    className="know-more"
+                    onClick={() => handleKnowMore(product)} // Trigger modal on click
+                  >
+                    Know More
+                  </a>
                   {product.is_soldout && <span className="sold-out">Sold Out</span>}
                 </div>
               </div>
@@ -61,6 +77,10 @@ const Ladies = () => {
           ))}
         </div>
       )}
+
+      {/* Modal Component */}
+      <Modal isOpen={!!selectedProduct} product={selectedProduct} onClose={closeModal} />
+
     </div>
   );
 };
