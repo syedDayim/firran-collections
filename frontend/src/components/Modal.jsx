@@ -1,15 +1,17 @@
-// Modal.js
 import React from 'react';
 import '../styles/modal.css'; // Style file for the modal
 
 const Modal = ({ isOpen, product, onClose }) => {
   if (!isOpen) return null;
-
+  
   const handleButtonClick = () => {
     if (!product.is_soldout) {
-      window.location.href = '/appointment'; // Redirect to the appointment page
+      const encodedTitle = encodeURIComponent(product.title); // Safely encode the title for the URL
+      // Redirect to the appointment page with product title as a query parameter
+      window.location.href = `/appointment?product=${encodedTitle}`;
     }
   };
+  
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -17,7 +19,7 @@ const Modal = ({ isOpen, product, onClose }) => {
         <div className="modal-header">
           <h2>{product.title}</h2>
           <button className="close-btn" onClick={onClose}>
-            
+            {/* Close button */}
           </button>
         </div>
         <div className="modal-body">
