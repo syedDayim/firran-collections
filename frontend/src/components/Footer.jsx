@@ -18,9 +18,21 @@ const Footer = () => {
           <i className="fab fa-linkedin-in"></i>
         </a>
       </div>
-      <div className="company-name">
-        9541555555 | support@firran.com
+
+      <div className="contact-info">
+        <div className="phone-container">
+          <i className="fas fa-phone-alt"></i>
+          <a href="tel:+9541555555" className="phone-number">+9541555555</a>
+        </div>
+        <div className="phone-container">
+          <i className="fas fa-phone-alt"></i>
+          <a href="tel:+9541234567" className="phone-number">+9541234567</a>
+        </div>
+        <div className="email-container">
+          For support, write to us at <a href="mailto:support@firran.com" className="email-link" style={{paddingLeft: '5px'}}>support@firran.com</a>
+        </div>
       </div>
+
       <div className="company-name">
         Firran LLC
       </div>

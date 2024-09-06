@@ -4,15 +4,12 @@ import Header from '../../components/Header';
 import '../../styles/chooseSeason.css';  // Import the CSS file
 
 export default function ChooseLadiesSeason() {
-  // State to store the fetched data
   const [gentsCollection, setGentsCollection] = useState([]);
 
-  // Fetch data from the API when the component mounts
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/gents/')
       .then(response => response.json())
       .then(data => {
-        // Update the state with the fetched data
         setGentsCollection(data);
       })
       .catch(error => {
@@ -23,10 +20,10 @@ export default function ChooseLadiesSeason() {
   return (
     <>
       <Header />
-      <div className="content-container"> {/* New container div with padding */}
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <div className="content-container">
+        <ul className="card-list">
           {gentsCollection.map((season, index) => (
-            <li key={index} style={{ marginBottom: '15px' }}>
+            <li key={index} className="card-item">
               <div className="card-container">
                 <a
                   href={`/gents?season=${season.name.toLowerCase()}`}

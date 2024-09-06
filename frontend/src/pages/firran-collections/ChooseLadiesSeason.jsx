@@ -5,7 +5,7 @@ import '../../styles/chooseSeason.css';  // Import the CSS file
 
 export default function ChooseLadiesSeason() {
   // State to store the fetched data
-  const [gentsCollection, setGentsCollection] = useState([]);
+  const [ladiesCollection, setLadiesCollection] = useState([]);
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function ChooseLadiesSeason() {
       .then(response => response.json())
       .then(data => {
         // Update the state with the fetched data
-        setGentsCollection(data);
+        setLadiesCollection(data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -23,10 +23,10 @@ export default function ChooseLadiesSeason() {
   return (
     <>
       <Header />
-      <div className="content-container"> {/* New container div with padding */}
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
-          {gentsCollection.map((season, index) => (
-            <li key={index} style={{ marginBottom: '15px' }}>
+      <div className="content-container">
+        <ul className="card-list">
+          {ladiesCollection.map((season, index) => (
+            <li key={index} className="card-item">
               <div className="card-container">
                 <a
                   href={`/ladies?season=${season.name.toLowerCase()}`}
