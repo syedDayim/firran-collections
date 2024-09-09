@@ -61,10 +61,10 @@ const Slider = () => {
         </div>
       ))}
       <button className="slider-arrow slider-arrow-left" onClick={goToPreviousSlide}>
-        <ChevronLeft size={32} />
+        <ChevronLeft size={15} />
       </button>
       <button className="slider-arrow slider-arrow-right" onClick={goToNextSlide}>
-        <ChevronRight size={32} />
+        <ChevronRight size={15} />
       </button>
     </div>
   );
