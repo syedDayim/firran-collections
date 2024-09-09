@@ -15,7 +15,6 @@
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  /* background-size: 100% 100%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,17 +49,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
-  font-size: 2rem;
   color: white;
   cursor: pointer;
   z-index: 2;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .slider-arrow:hover {
-  opacity: 0.7;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .slider-arrow-left {

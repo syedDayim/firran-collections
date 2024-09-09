@@ -22,11 +22,11 @@ const Footer = () => {
       <div className="contact-info">
         <div className="phone-container">
           <i className="fas fa-phone-alt"></i>
-          <a href="tel:+9541555555" className="phone-number">+9541555555</a>
+          <a href="tel:+919773882005" className="phone-number">+91-9773882005</a>
         </div>
         <div className="phone-container">
           <i className="fas fa-phone-alt"></i>
-          <a href="tel:+9541234567" className="phone-number">+9541234567</a>
+          <a href="tel:+9101204276770" className="phone-number">+91-01204276770</a>
         </div>
         <div className="email-container">
           For support, write to us at <a href="mailto:support@firran.com" className="email-link" style={{paddingLeft: '5px'}}>support@firran.com</a>
