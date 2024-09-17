@@ -45,7 +45,7 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'About', href: '#about', dropdownItems: ['About 1', 'About 2', 'About 3', 'About 4', 'About 5'] },
+    { name: 'About', href: '/about' },
     { 
       name: 'Firran Collections', 
       href: '#collections', 
