@@ -12,6 +12,7 @@ import ContactSection from '../components/aboutComponents/ContactSection';
 import TeamSection from '../components/aboutComponents/TeamSection';
 import NewsletterSection from '../components/aboutComponents/NewsletterSection';
 import CounterSection from '../components/aboutComponents/CounterSection';
+import Testimonial from '../components/aboutComponents/Testimonial';
 
 const About = () => {
     return (
@@ -22,13 +23,14 @@ const About = () => {
 
 
                 {/* <FeaturesSection /> */}
-                {/* <PortfolioSection /> */}
+                <PortfolioSection />
                 {/* <ClientsSection /> */}
                 <TeamSection />
-                {/* <NewsletterSection /> */}
-                {/* <CounterSection /> */}
+                <Testimonial />
+                <NewsletterSection />
+                <CounterSection />
                 {/* <BlogSection /> */}
-                {/* <ContactSection /> */}
+                <ContactSection />
             </main>
         </div>
     );

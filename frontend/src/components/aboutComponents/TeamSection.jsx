@@ -40,7 +40,7 @@ const TeamCarousel = () => {
     return (
         <section className="team-carousel-section">
             <div className="container">
-                <h2 className="section-title">Our Team</h2>
+                <h2 className="section-title">Firran Team</h2>
                 <p className="section-description">Meet the innovative minds behind our success</p>
 
                 <Slider {...settings} className="team-slider">

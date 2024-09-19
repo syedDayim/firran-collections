@@ -11,7 +11,7 @@ const MainSlider = () => {
                 <div className="caption text-center">
                     <div className="animated">
                         <span className="title">simple & creative</span>
-                        <h1>we are <span className="clr">orea</span></h1>
+                        <h1>we are <span className="clr">Firran</span></h1>
                         <span className="sub-title">you will get more than you expected</span>
                     </div>
                 </div>
