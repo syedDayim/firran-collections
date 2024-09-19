@@ -11,7 +11,9 @@ const AboutSection = () => {
     ];
 
     return (
+        <>
         <section className="about-section">
+       
             <div className="container">
                 <h2 className="main-heading">About Our Company</h2>
                 <p className="header-text">Pioneering innovative solutions for a digital world</p>
@@ -209,6 +211,8 @@ const AboutSection = () => {
                 }
             `}</style>
         </section>
+
+        </>
     );
 };
 

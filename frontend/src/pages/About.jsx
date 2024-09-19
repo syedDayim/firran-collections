@@ -14,8 +14,13 @@ import NewsletterSection from '../components/aboutComponents/NewsletterSection';
 import CounterSection from '../components/aboutComponents/CounterSection';
 import Testimonial from '../components/aboutComponents/Testimonial';
 
+
 const About = () => {
     return (
+        <>
+        
+       
+        
         <div id="wrapper">
             <main id="main">
                 <MainSlider />
@@ -33,6 +38,7 @@ const About = () => {
                 <ContactSection />
             </main>
         </div>
+        </>
     );
 };
 

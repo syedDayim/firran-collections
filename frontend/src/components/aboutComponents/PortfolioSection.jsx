@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const images = [
     { src: "https://via.placeholder.com/600", alt: "Gallery Image 1" },
@@ -20,6 +23,18 @@ const PortfolioSection = () => {
 
     const handleCloseImage = () => {
         setOpenImage(null);
+    };
+
+    // Settings for the mobile carousel
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        centerMode: true,
+        centerPadding: '30px',
     };
 
     return (
@@ -44,6 +59,22 @@ const PortfolioSection = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Mobile Carousel */}
+                <div className="portfolio-carousel">
+                    <Slider {...settings}>
+                        {images.map((image, index) => (
+                            <div key={index} className="carousel-item">
+                                <img
+                                    src={image.src}
+                                    alt={image.alt}
+                                    className="carousel-image"
+                                    onClick={() => handleOpenImage(image)}
+                                />
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
             </div>
 
@@ -148,6 +179,37 @@ const PortfolioSection = () => {
                     letter-spacing: 1px;
                 }
 
+                /* Mobile Carousel */
+                .portfolio-carousel {
+                    display: none;
+                    margin-top: 2rem;
+                }
+
+                .carousel-item {
+                    display: flex !important;
+                    justify-content: center;
+                    padding: 10px;
+                }
+
+                .carousel-image {
+                    width: 90%;
+                    height: auto;
+                    border-radius: 15px;
+                    cursor: pointer;
+                }
+
+                .slick-dots {
+                    bottom: -30px;
+                }
+
+                .slick-dots li button:before {
+                    font-size: 12px;
+                }
+
+                .slick-dots li.slick-active button:before {
+                    color: #333;
+                }
+
                 /* Modal Styles */
                 .modal-overlay {
                     position: fixed;
@@ -211,15 +273,11 @@ const PortfolioSection = () => {
                     }
 
                     .portfolio-grid {
-                        gap: 1rem;
+                        display: none;
                     }
 
-                    .portfolio-item {
-                        margin-bottom: 1rem;
-                    }
-
-                    .modal-content {
-                        padding: 1rem;
+                    .portfolio-carousel {
+                        display: block;
                     }
                 }
             `}</style>
