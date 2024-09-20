@@ -25,8 +25,6 @@ const About = () => {
             <main id="main">
                 <MainSlider />
                 <AboutSection />
-
-
                 {/* <FeaturesSection /> */}
                 <PortfolioSection />
                 {/* <ClientsSection /> */}
