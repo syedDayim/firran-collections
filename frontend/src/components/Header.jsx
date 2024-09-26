@@ -51,8 +51,8 @@ const Header = () => {
       href: '#collections', 
       dropdownItems: ['Ladies', 'Gents'] 
     },
-    { name: 'Firran Events', href: '#events' },
-    { name: 'Firran Designs', href: '#designs' }
+    { name: 'Firran Events', href: '/events' },
+    { name: 'Firran Designs', href: '/designs' }
   ];
 
   return (

@@ -15,6 +15,7 @@ import CounterSection from '../components/aboutComponents/CounterSection';
 import Testimonial from '../components/aboutComponents/Testimonial';
 
 
+
 const About = () => {
     return (
         <>
@@ -23,6 +24,7 @@ const About = () => {
         
         <div id="wrapper">
             <main id="main">
+              
                 <MainSlider />
                 <AboutSection />
                 {/* <FeaturesSection /> */}
