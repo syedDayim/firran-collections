@@ -1,59 +1,51 @@
 import React, { useState, useEffect } from 'react';
-
-
+import axios from 'axios';
 
 export default function EventSlider() {
-    const events = [
-        {
-          id: 1,
-          date: '25 SEP, 2024',
-          title: 'World Biggest Business Conf. 2024',
-          location: '21 King Street, 1175 Australia',
-          image: "../../public/events/event1.jpg"
-        },
-        {
-          id: 2,
-          date: '15 OCT, 2024',
-          title: 'Tech Innovation Summit 2024',
-          location: '55 Queen Avenue, 2000 Singapore',
-          image: "../../public/events/event2.jpg"
-        },
-        {
-          id: 3,
-          date: '05 NOV, 2024',
-          title: 'Global Marketing Expo 2024',
-          location: '88 Main Road, 3000 New Zealand',
-          image: "../../public/events/event3.jpg"
-        }
-      ];
-    
-      const [currentEvent, setCurrentEvent] = useState(0);
-      const [isAnimating, setIsAnimating] = useState(false);
-    
-      useEffect(() => {
-        if (isAnimating) {
-          const timer = setTimeout(() => setIsAnimating(false), 500);
-          return () => clearTimeout(timer);
-        }
-      }, [isAnimating]);
-    
-      const nextEvent = () => {
-        setIsAnimating(true);
-        setCurrentEvent((prev) => (prev + 1) % events.length);
-      };
-    
-      const prevEvent = () => {
-        setIsAnimating(true);
-        setCurrentEvent((prev) => (prev - 1 + events.length) % events.length);
-      };
-    
+  const [events, setEvents] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
+  useEffect(() => {
+    // Fetch events data from the API
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/events/');
+        setEvents(response.data); // Assuming response.data is an array of events
+      } catch (error) {
+        console.error("Error fetching events data", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    if (isAnimating) {
+      const timer = setTimeout(() => setIsAnimating(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating]);
+
+  const nextEvent = () => {
+    setIsAnimating(true);
+    setCurrentEvent((prev) => (prev + 1) % events.length);
+  };
+
+  const prevEvent = () => {
+    setIsAnimating(true);
+    setCurrentEvent((prev) => (prev - 1 + events.length) % events.length);
+  };
+
+  if (events.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="events-container">
       <button className="nav-button prev" onClick={prevEvent}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <div className="event-slider">
@@ -63,7 +55,7 @@ export default function EventSlider() {
       </div>
       <button className="nav-button next" onClick={nextEvent}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <div className={`event-info ${isAnimating ? 'fade' : ''}`}>
@@ -72,7 +64,7 @@ export default function EventSlider() {
         <p className="event-location">{events[currentEvent].location}</p>
         <button className="register-button">REGISTER NOW</button>
       </div>
-      
+
       {/* Navigation Dots */}
       <div className="dots-container">
         {events.map((event, index) => (
@@ -270,5 +262,5 @@ export default function EventSlider() {
         }
       `}</style>
     </div>
-  )
+  );
 }
