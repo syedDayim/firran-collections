@@ -1,10 +1,11 @@
 from django.http import JsonResponse
-from .models import LadiesCategory, GentsCategory, Product
+from .models import LadiesCategory, GentsCategory, Product, Event
 
 def ladies_category_list(request):
     ladies = LadiesCategory.objects.all()
     ladies_list = [{'name': lady.name, 'image': request.build_absolute_uri(lady.image.url)} for lady in ladies]
     return JsonResponse(ladies_list, safe=False)
+
 
 def gents_category_list(request):
     gents = GentsCategory.objects.all()
@@ -26,3 +27,18 @@ def product_list(request):
         for product in products
     ]
     return JsonResponse(product_list, safe=False)
+
+
+
+def event_list(request):
+    events = Event.objects.all()
+    events_list = [
+        {
+            'title': event.title,
+            'date': event.date,
+            'location': event.location,
+            'image': request.build_absolute_uri(event.image.url),  # Construct absolute image URL
+        }
+        for event in events
+    ]
+    return JsonResponse(events_list, safe=False)

@@ -46,3 +46,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)  # 'World Biggest Business Conf. 2024'
+    date = models.CharField(max_length=50)  # '25 SEP, 2024' - You can change to DateField if preferred
+    location = models.CharField(max_length=255)  # '21 King Street, 1175 Australia'
+    image = models.ImageField(upload_to='events_images/')  # Image upload path
+
+    def __str__(self):
+        return self.title
