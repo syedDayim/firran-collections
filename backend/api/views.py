@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .models import LadiesCategory, GentsCategory, Product, Event
+from .models import LadiesCategory, GentsCategory, Product, Event, Gallery
 
 def ladies_category_list(request):
     ladies = LadiesCategory.objects.all()
@@ -42,3 +42,17 @@ def event_list(request):
         for event in events
     ]
     return JsonResponse(events_list, safe=False)
+
+
+
+
+def gallery_list(request):
+    galleries = Gallery.objects.all()
+    gallery_list = [
+        {
+            'title': gallery.title,
+            'image': request.build_absolute_uri(gallery.image.url),
+        }
+        for gallery in galleries
+    ]
+    return JsonResponse(gallery_list, safe=False)

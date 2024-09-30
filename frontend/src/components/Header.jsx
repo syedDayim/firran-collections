@@ -51,7 +51,7 @@ const Header = () => {
       href: '#collections', 
       dropdownItems: ['Ladies', 'Gents'] 
     },
-    { name: 'Firran Events', href: '/events' },
+    { name: 'Firran Events', href: '/events', },
     { name: 'Firran Designs', href: '/designs' }
   ];
 
@@ -70,6 +70,8 @@ const Header = () => {
             <a 
               href={item.dropdownItems ? '#' : item.href}
               onClick={(e) => item.dropdownItems && toggleDropdown(index, e)}
+              target="_blank"  // Open in a new tab
+              rel="noopener noreferrer"  // Security measure
             >
               {item.name}
               {item.dropdownItems && (
@@ -80,11 +82,32 @@ const Header = () => {
               <div className={`dropdown-content ${activeDropdown === index ? 'active' : ''}`}>
                 {item.dropdownItems.map((subItem, subIndex) => (
                   subItem === 'Ladies' ? (
-                    <Link key={subIndex} to="/collections-ladies">{subItem}</Link>
+                    <Link 
+                      key={subIndex} 
+                      to="/collections-ladies" 
+                      target="_blank" // Open in new tab
+                      rel="noopener noreferrer" // Security measure
+                    >
+                      {subItem}
+                    </Link>
                   ) : subItem === 'Gents' ? (
-                    <Link key={subIndex} to="/collections-gents">{subItem}</Link>
+                    <Link 
+                      key={subIndex} 
+                      to="/collections-gents" 
+                      target="_blank"  // Open in new tab
+                      rel="noopener noreferrer"  // Security measure
+                    >
+                      {subItem}
+                    </Link>
                   ) : (
-                    <a key={subIndex} href={`${item.href}-${subIndex + 1}`}>{subItem}</a>
+                    <a 
+                      key={subIndex} 
+                      href={`${item.href}-${subIndex + 1}`}
+                      target="_blank"  // Open in new tab
+                      rel="noopener noreferrer"  // Security measure
+                    >
+                      {subItem}
+                    </a>
                   )
                 ))}
               </div>

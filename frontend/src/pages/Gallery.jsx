@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import loading from '../../public/loading.gif';
+import axios from 'axios';
 
 const Gallery = () => {
+  const [images, setImages] = useState([]);
   const [modalImage, setModalImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  const images = [
-    { src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e", alt: "Portrait by Jessica Felicio", caption: "Jessica Felicio" },
-    { src: "https://images.unsplash.com/photo-1504834636679-cd3acd047c06", alt: "Portrait by Oladimeji Odunsi", caption: "Oladimeji Odunsi" },
-    { src: "https://images.unsplash.com/photo-1542513217-0b0eedf7005d", alt: "Portrait by Alex Perez", caption: "Alex Perez" },
-    { src: "https://images.unsplash.com/photo-1526413232644-8a40f03cc03b", alt: "Portrait by Aiony Haust", caption: "Aiony Haust" },
-    { src: "https://images.unsplash.com/photo-1535295972055-1c762f4483e5", alt: "Portrait by Ivana Cajina", caption: "Ivana Cajina" },
-    { src: "https://images.unsplash.com/photo-1505151228723-18d0f726f3b1", alt: "Portrait by Jeffery Erhunse", caption: "Jeffery Erhunse" },
-    { src: "https://images.unsplash.com/photo-1495649904698-0f3670bdf61f", alt: "Portrait by Mari Lezhava", caption: "Mari Lezhava" },
-    { src: "https://images.unsplash.com/photo-1627388020481-4330ab86d091", alt: "Portrait by Suad Kamardeen", caption: "Suad Kamardeen" },
-    { src: "https://images.unsplash.com/photo-1517462964-21fdcec3f25b", alt: "Portrait by Ethan Haddox", caption: "Ethan Haddox" },
-    { src: "https://images.unsplash.com/photo-1593501273289-354b4fcf3add", alt: "Portrait by Tyler Nix", caption: "Tyler Nix" },
-    { src: "https://images.unsplash.com/photo-1619378607926-710cb2d2f9a3", alt: "Portrait by Jasmin Chew", caption: "Jasmin Chew" },
-    { src: "https://images.unsplash.com/photo-1586245895595-395fb6ffd945", alt: "Portrait by Dima DallAcqua", caption: "Dima DallAcqua" },
-  ];
+  // Fetch gallery images from backend
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/gallery/')
+      .then((response) => {
+        setImages(response.data);  // Set fetched images to state
+        setIsLoading(false);  // Data loaded, set loading to false
+      })
+      .catch((error) => {
+        console.error('There was an error fetching the gallery images!', error);
+        setIsLoading(false);  // Set loading to false even on error
+      });
+  }, []);  // Empty array ensures this runs once on component mount
 
   const openModal = (image) => {
     setModalImage(image);
@@ -29,29 +31,51 @@ const Gallery = () => {
   };
 
   return (
-    <div className="gallery">
-      {images.map((image, index) => (
-        <div key={index} className="gallery__item" onClick={() => openModal(image)}>
-          <figure className="gallery__thumb">
-            <img src={image.src} alt={image.alt} className="gallery__image" />
-            <figcaption className="gallery__caption">
-              <span>{image.caption}</span>
-            </figcaption>
-          </figure>
+    <div className="gallery-container">
+      {/* Show loading spinner or image while data is being fetched */}
+      {isLoading ? (
+        <div className="loading-spinner">
+          <img src={loading} alt="Loading..." />
         </div>
-      ))}
+      ) : (
+        <div className="gallery">
+          {images.map((image, index) => (
+            <div key={index} className="gallery__item" onClick={() => openModal(image)}>
+              <figure className="gallery__thumb">
+                <img src={image.image} alt={image.title} className="gallery__image" />
+                <figcaption className="gallery__caption">
+                  <span>{image.title}</span>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
+        </div>
+      )}
 
       {modalImage && (
         <div className="modal" onClick={closeModal}>
           <div className="modal__content" onClick={(e) => e.stopPropagation()}>
-            <img src={modalImage.src} alt={modalImage.alt} className="modal__image" />
-            <figcaption className="modal__caption">{modalImage.caption}</figcaption>
+            <img src={modalImage.image} alt={modalImage.title} className="modal__image" />
+            <figcaption className="modal__caption">{modalImage.title}</figcaption>
             <button className="modal__close" onClick={closeModal}>×</button>
           </div>
         </div>
       )}
 
       <style jsx>{`
+
+      
+        .gallery-container {
+          position: relative;
+        }
+
+        .loading-spinner {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
         .gallery {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -200,6 +224,8 @@ const Gallery = () => {
             right: 1rem;
           }
         }
+
+        
       `}</style>
     </div>
   );
