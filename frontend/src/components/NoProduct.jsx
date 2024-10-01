@@ -1,11 +1,12 @@
 import React from 'react';
 import '../styles/noProduct.css'; // Import the CSS file for styling
+import outofstock from '/outofstock.png';
 
 export default function NoProduct() {
   return (
     <div className="no-product-container">
       <img 
-        src="https://via.placeholder.com/600x400?text=No+Products+Available" 
+        src={outofstock} 
         alt="No Products Available" 
         className="no-product-image" 
       />
