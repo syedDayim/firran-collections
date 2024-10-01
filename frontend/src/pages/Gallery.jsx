@@ -34,8 +34,9 @@ const Gallery = () => {
     <div className="gallery-container">
       {/* Show loading spinner or image while data is being fetched */}
       {isLoading ? (
-        <div className="loading-spinner">
-          <img src={loading} alt="Loading..." />
+        <div className="loading-spinner"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+
+          <img src={loading} alt="Loading..." style={{width: '10%'}} />
         </div>
       ) : (
         <div className="gallery">
