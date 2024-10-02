@@ -36,7 +36,7 @@ const Gallery = () => {
       {isLoading ? (
         <div className="loading-spinner"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 
-          <img src={loading} alt="Loading..." style={{width: '10%'}} />
+          <img src={loading} alt="Loading..." style={{width: '10%'}}  loading="lazy" />
         </div>
       ) : (
         <div className="gallery">
